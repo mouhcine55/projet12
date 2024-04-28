@@ -1,4 +1,5 @@
 import React, { useRef } from 'react'
+import emailjs from '@emailjs/browser'
 import ButtonStyle from '../../utils/style/boutonstyle'
 import '../../sass/components/_form.scss'
 import '../../sass/components/_buttonstyle.scss'
@@ -9,6 +10,21 @@ export const Form = () => {
 
   const handleSendEmail = (e) => {
     e.preventDefault()
+    emailjs
+    .sendForm(
+      'service_3m70dlj',
+      'template_x5h4q8j',
+      form.current,
+      'Z6JIyytbBbEN1wOFD',   
+    )
+    .then(
+      (result) => {
+        console.log(result.text)
+      },
+      (error) => {
+        console.error(error.text)
+      },
+    )
    
     document.forms['form'].reset()
     dialog.current.showModal()
